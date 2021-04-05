@@ -12,25 +12,21 @@ public class App {
 	 */
 	public void addNumber() {
 		if (empty > 0) {
-			// Generate random int 'pos' to represent cell[pos]
-			int pos = (int) (Math.random() * 16);
+			int pos = (int) (Math.random() * 16); // Random int for position
 			
-			// Ensures the cell is empty
 			while (pos == 16 || board[pos / 4][pos % 4] != 0) {
 				pos = (int) (Math.random() * 16);
 			}
 			
-			// Generate random int to decide whether value is a 4 or 2
-			int value = (int) (Math.random() * 5);
+			int value = (int) (Math.random() * 5); // Random int for either 2 or 4
 				if (value == 1) { // 0.2 probability
 					value = 4;
 				} else { // 0.8 probability
 					value = 2;
 				}
 			
-			// Sets board at random position equal to 2 or 4
 			board[pos / 4][pos % 4] = value;
-			empty --; // deincrements number of empty cells
+			empty --; // deincrement number of empty cells
 		}
 	}
 	
@@ -88,14 +84,14 @@ public class App {
 	}
 	
 	/**
-	 * Responds to command 's' key or down arroy
+	 * Responds to command 's' key or down arrow key
 	 * @return true if a valid down move is made
 	 */
 	public boolean moveDown() {
 		boolean valid = false;
 		
 		for(int j = 0; j < 4; j++) {
-			int last = 3; // reresents the last number not changed
+			int last = 3; // represents the last number not changed
 			
 			for(int i = 2; i >= 0; i--) {				
 				

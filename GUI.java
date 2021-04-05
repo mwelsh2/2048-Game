@@ -36,7 +36,7 @@ public class GUI extends JFrame implements KeyListener {
 	 *  Initializes graphical components of the playing board
 	 */
 	public void setupBoard() {
-		// Set board parameters
+		// Create board
 		board = new JPanel(new GridLayout(4,4));
 		board.setPreferredSize(new Dimension(500,500));
 		
@@ -49,12 +49,11 @@ public class GUI extends JFrame implements KeyListener {
 			cells[i].setBorder(BorderFactory.createLineBorder(Color.GRAY, 6));
 			cells[i].setHorizontalAlignment(JLabel.CENTER);
 			board.add(cells[i]);
-			
 		}
 		
 		this.getContentPane().add(BorderLayout.CENTER, board);
 		
-		// Set count panel parameters
+		// Create counting panel
 		count = new JPanel();
 		count.setPreferredSize(new Dimension(500,50));
 		count.setLayout(new FlowLayout());
@@ -203,58 +202,38 @@ public class GUI extends JFrame implements KeyListener {
 		case KeyEvent.VK_W:
 			System.out.print("Up");
 			app.move("up");
-			if (app.gameOver()) {
-				printCurrent();
-				printOver();
-			} else if (app.won()) {
-				printCurrent();
-				printWin();
-			} else {
-				printCurrent();
-			}
+			nextState();
 			break;
 		case KeyEvent.VK_DOWN: // Move Down
 		case KeyEvent.VK_S:
 			System.out.print("Down");
 			app.move("down");
-			if (app.gameOver()) {
-				printCurrent();
-				printOver();
-			} else if (app.won()) {
-				printCurrent();
-				printWin();
-			} else {
-				printCurrent();
-			}
+			nextState();
 			break;
 		case KeyEvent.VK_RIGHT: // Move Right
 		case KeyEvent.VK_D:
 			System.out.print("Right");
 			app.move("right");
-			if (app.gameOver()) {
-				printCurrent();
-				printOver();
-			} else if (app.won()) {
-				printCurrent();
-				printWin();
-			} else {
-				printCurrent();
-			}
+			nextState();
 			break;
 		case KeyEvent.VK_LEFT: // Move Left
 		case KeyEvent.VK_A:
 			System.out.print("Left");
 			app.move("left");
-			if (app.gameOver()) {
-				printCurrent();
-				printOver();
-			} else if (app.won()) {
-				printCurrent();
-				printWin();
-			} else {
-				printCurrent();
-			}
+			nextState();
 			break;
+		}
+	}
+
+	public void nextState() {
+		if (app.gameOver()) {
+			printCurrent();
+			printOver();
+		} else if (app.won()) {
+			printCurrent();
+			printWin();
+		} else {
+			printCurrent();
 		}
 	}
 	
